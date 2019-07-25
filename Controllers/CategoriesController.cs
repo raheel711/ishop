@@ -148,5 +148,8 @@ namespace ishop.Controllers
         {
             return _context.Category.Any(e => e.Id == id);
         }
+
+
+
     }
 }

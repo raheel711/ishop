@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ishop.Helpers;
+using ishop.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,15 @@ namespace ishop.Controllers
 {
     public class DashboardController : Controller
     {
+
+
+        private readonly ishopContext _context;
+
+        public DashboardController(ishopContext context)
+        {
+            _context = context;
+        }
+
         Helper Hlp = new Helper();
 
 
@@ -21,6 +31,12 @@ namespace ishop.Controllers
             {
                 return false;
             }
+
+            ViewBag.totalCategories = _context.Category.ToList().Count();
+            ViewBag.totalProducts = _context.Product.ToList().Count();
+            ViewBag.activeSU = _context.SystemUser.Where(abc=>abc.SuStatus=="active").ToList().Count();
+            ViewBag.totalSU = _context.SystemUser.ToList().Count();
+
             return true;
         }
 
