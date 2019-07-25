@@ -148,5 +148,20 @@ namespace ishop.Controllers
         {
             return _context.SystemUser.Any(e => e.Id == id);
         }
+
+        // GET: SystemUsers/Login
+        public IActionResult Login()
+        {
+
+            return View();
+        }
+
+        // GET: SystemUsers/Register
+        public IActionResult Register()
+        {
+
+            return View();
+        }
+
     }
 }
