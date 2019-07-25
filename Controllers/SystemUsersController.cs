@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ishop.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace ishop.Controllers
 {
@@ -189,6 +190,36 @@ namespace ishop.Controllers
         {
 
             return View();
+        }
+
+
+        public string LoginCheck(string SuUsername, string SuPassword)
+        {
+            if (SuUsername != "" || SuPassword != "")
+            {
+                SystemUser su = _context.SystemUser.FirstOrDefault(s => s.SuUsername == SuUsername && s.SuPassword == SuPassword);
+
+                if (su != null)
+                {
+                    if (su.SuStatus == "active")
+                    {
+                        HttpContext.Session.SetString("SessionUsername", su.SuUsername);
+                        HttpContext.Session.SetString("SessionUserRole", su.SuRole);
+
+                        return "true";
+                    }
+                    else { return "inactive"; }
+                }
+                else
+                {
+                    return "false";
+                }
+            }
+            else
+            {
+                return "false";
+            }
+
         }
 
 
