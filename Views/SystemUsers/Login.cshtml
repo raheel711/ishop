@@ -53,3 +53,39 @@
 
     </div>
 </div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script>
+        $("#btnLogin").click(function (e) {
+            e.preventDefault();
+            var username = $("#SuUsername").val();
+            var password = $("#SuPassword").val();
+            alert(username);
+            $.ajax({
+                type: "POST",
+                url: "/SystemUsers/LoginCheck/",
+                data: { SuUsername: username, SuPassword: password },
+                success: function (result) {
+                    if (result == "false") {
+                        alert("ERROR: Invalid Username or Password");
+                    } else if (result == "true") {
+                        window.location.href = '/Dashboard/Index/';
+                    } else if (result == "inactive") {
+                             alert("Denied: Access Denied!!! Contact Administrator.");
+                    }
+
+                },
+                error: function (result) {
+                    alert('error');
+                }
+            });
+        });
+
+
+    </script>
+}

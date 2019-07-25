@@ -53,10 +53,14 @@ namespace ishop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DisplayName,SuUsername,SuPassword,SuStatus,SuProfilePic,SuRole,AddedDate,AddedBy,Extra")] SystemUser systemUser)
+        public async Task<IActionResult> Create([Bind("Id,DisplayName,SuUsername,SuPassword,SuStatus,SuProfilePic,SuRole,AddedDate,AddedBy,Extra,SuEmail")] SystemUser systemUser)
         {
             if (ModelState.IsValid)
             {
+
+        
+
+
                 _context.Add(systemUser);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -169,6 +173,52 @@ namespace ishop.Controllers
 
             return View();
         }
+
+
+        //public string LoginCheck(string SuUsername, string SuPassword)
+        //{
+        //    if (SuUsername != "" || SuPassword != "")
+        //    {
+        //        SystemUser su = _context.SystemUser.FirstOrDefault(s => s.SuUsername == SuUsername && s.SuPassword == SuPassword);
+
+        //        if (su != null)
+        //        {
+        //            if (su.SuStatus == "active")
+        //            {
+        //                HttpContext.Session.SetString("SessionUsername", su.SuUsername);
+        //                HttpContext.Session.SetString("SessionBranchId", su.BranchId.ToString());
+
+        //                HttpContext.Session.SetString("SessionUserRole", su.SuRole);
+
+        //                //role id: WHat user can perform.. It'll get data from role_permissions
+        //                Role r = ORM.Role.FirstOrDefault(rs => rs.RoleName == su.SuRole);
+        //                HttpContext.Session.SetString("SessionUserRoleID", r.Id.ToString());
+
+
+        //                // I want this in loop so i can retrive each row data
+        //                ORM.RolePermission.Where(rps => rps.RoleId == r.Id).ToList();
+
+
+
+        //                TempData["added_date"] = su.SuAddedDate;
+
+        //                return "true";
+        //            }
+        //            else { return "inactive"; }
+        //        }
+        //        else
+        //        {
+        //            return "false";
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return "false";
+        //    }
+
+        //}
+
+
 
     }
 }

@@ -15,5 +15,7 @@ namespace ishop.Models
         public string AddedDate { get; set; }
         public string AddedBy { get; set; }
         public string Extra { get; set; }
+        public string SuEmail { get; set; }
+
     }
 }

@@ -159,6 +159,12 @@ namespace ishop.Models
                 entity.Property(e => e.SuUsername)
                     .HasColumnName("su_username")
                     .HasMaxLength(50);
+
+                entity.Property(e => e.SuEmail)
+                  .HasColumnName("su_email")
+                  .HasMaxLength(50);
+
+                
             });
         }
     }
