@@ -17,20 +17,15 @@
                     </div>
                     <form class="user">
                         <div class="form-group">
-                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                            <input type="text" class="form-control form-control-user" id="inputUsername" aria-describedby="emailHelp" placeholder="Enter Username..." required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                            <input type="password" class="form-control form-control-user" id="inputPassword" placeholder="Password" required>
                         </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox small">
-                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                <label class="custom-control-label" for="customCheck">Remember Me</label>
-                            </div>
-                        </div>
-                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                        <br>
+                        <button id="btnLogin" class="btn btn-primary btn-user btn-block">
                             Login
-                        </a>
+                        </button>
                         <hr>
                         <a href="index.html" class="btn btn-google btn-user btn-block">
                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -63,8 +58,8 @@
     <script>
         $("#btnLogin").click(function (e) {
             e.preventDefault();
-            var username = $("#SuUsername").val();
-            var password = $("#SuPassword").val();
+            var username = $("#inputUsername").val();
+            var password = $("#inputPassword").val();
             alert(username);
             $.ajax({
                 type: "POST",

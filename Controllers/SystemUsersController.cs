@@ -42,32 +42,7 @@ namespace ishop.Controllers
             return View(systemUser);
         }
 
-        // GET: SystemUsers/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SystemUsers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DisplayName,SuUsername,SuPassword,SuStatus,SuProfilePic,SuRole,AddedDate,AddedBy,Extra,SuEmail")] SystemUser systemUser)
-        {
-            if (ModelState.IsValid)
-            {
-
         
-
-
-                _context.Add(systemUser);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(systemUser);
-        }
-
         // GET: SystemUsers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -160,6 +135,7 @@ namespace ishop.Controllers
             return View();
         }
 
+
         // GET: SystemUsers/Register
         public IActionResult Register()
         {
@@ -167,56 +143,53 @@ namespace ishop.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register([Bind("Id,DisplayName,SuUsername,SuPassword,SuStatus,SuProfilePic,SuRole,AddedDate,AddedBy,Extra,SuEmail")] SystemUser systemUser)
+        {
+            if (ModelState.IsValid)
+            {
+
+                if (systemUser.SuUsername != "" || systemUser.SuPassword != "" || systemUser.SuEmail != "")
+                {
+                    SystemUser suUsername = _context.SystemUser.FirstOrDefault(s => s.SuUsername == systemUser.SuUsername);
+                    SystemUser suEmail = _context.SystemUser.FirstOrDefault(s => s.SuEmail == systemUser.SuEmail);
+
+                    if (suUsername != null && suEmail != null)
+                    {
+                        TempData["message"] = "Username & Email Already Exists!!!!";
+                    } else if (suUsername != null)
+                    {
+                        TempData["message"] = "Username Already Exists!!!!";
+                    } else if (suEmail != null) {
+                        TempData["message"] = " Email Already Exists!!!!";
+                    }
+                    else
+                    {
+                        DateTime today = DateTime.Today;
+                        systemUser.AddedDate = today.ToString();
+                        systemUser.AddedBy = "self";
+                        systemUser.SuStatus = "inactive";
+
+                        _context.Add(systemUser);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Login));
+                    }
+                }
+
+            }
+            return View(systemUser);
+        }
+
+
+
+
         // GET: SystemUsers/ForgetPassword
         public IActionResult ForgetPassword()
         {
 
             return View();
         }
-
-
-        //public string LoginCheck(string SuUsername, string SuPassword)
-        //{
-        //    if (SuUsername != "" || SuPassword != "")
-        //    {
-        //        SystemUser su = _context.SystemUser.FirstOrDefault(s => s.SuUsername == SuUsername && s.SuPassword == SuPassword);
-
-        //        if (su != null)
-        //        {
-        //            if (su.SuStatus == "active")
-        //            {
-        //                HttpContext.Session.SetString("SessionUsername", su.SuUsername);
-        //                HttpContext.Session.SetString("SessionBranchId", su.BranchId.ToString());
-
-        //                HttpContext.Session.SetString("SessionUserRole", su.SuRole);
-
-        //                //role id: WHat user can perform.. It'll get data from role_permissions
-        //                Role r = ORM.Role.FirstOrDefault(rs => rs.RoleName == su.SuRole);
-        //                HttpContext.Session.SetString("SessionUserRoleID", r.Id.ToString());
-
-
-        //                // I want this in loop so i can retrive each row data
-        //                ORM.RolePermission.Where(rps => rps.RoleId == r.Id).ToList();
-
-
-
-        //                TempData["added_date"] = su.SuAddedDate;
-
-        //                return "true";
-        //            }
-        //            else { return "inactive"; }
-        //        }
-        //        else
-        //        {
-        //            return "false";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return "false";
-        //    }
-
-        //}
 
 
 
