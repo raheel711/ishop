@@ -163,5 +163,12 @@ namespace ishop.Controllers
             return View();
         }
 
+        // GET: SystemUsers/ForgetPassword
+        public IActionResult ForgetPassword()
+        {
+
+            return View();
+        }
+
     }
 }
