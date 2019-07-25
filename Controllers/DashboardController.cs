@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ishop.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace ishop.Controllers
 {
     public class DashboardController : Controller
     {
+        Helper Hlp = new Helper();
 
+
+        //How to use this function in Helper folders
         public bool AuthenticateUser()
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("SessionUsername")))
@@ -21,6 +26,8 @@ namespace ishop.Controllers
 
         public IActionResult Index()
         {
+            
+
             if (AuthenticateUser())
             {
                

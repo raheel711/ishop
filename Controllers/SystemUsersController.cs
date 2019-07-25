@@ -223,6 +223,12 @@ namespace ishop.Controllers
         }
 
 
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction(nameof(Login));
+        }
+
 
     }
 }
