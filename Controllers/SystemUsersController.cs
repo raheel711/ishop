@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ishop.Models;
 using Microsoft.AspNetCore.Http;
+using System.Net.Mail;
 
 namespace ishop.Controllers
 {
@@ -192,6 +193,48 @@ namespace ishop.Controllers
             return View();
         }
 
+      
+        [HttpPost]
+        public IActionResult ForgetPassword(string inputEmail)
+        {
+
+            try
+            {
+
+                SystemUser su = _context.SystemUser.FirstOrDefault(abc => abc.SuEmail == inputEmail);
+
+                //    MailMessage Email = new MailMessage();
+                //    Email.From = new MailAddress("shahzadaptech143@gmail.com", "M Shahzad");
+
+                //    Email.To.Add(new MailAddress(inputEmail));
+                //    //string[] allccemails = CCEmails.Split(",");
+
+                //    //Email.CC.Add(new MailAddress("info@thetasolutions.pk"));
+                //    //Email.Bcc.Add(new MailAddress("info@thetasolutions.co.uk"));
+
+                //    Email.Subject = "Password Recovery";
+                //    Email.IsBodyHtml = true;
+
+                //    Email.Body = "Hi <b style='background-color:yellow;'>" + HttpContext.Session.GetString("sessionUsername") + "</b>,<br><br>Here Is you Password" + su.SuPassword + "<br><br>---<br>Theta Team />";
+
+                //    SmtpClient SMTPServer = new SmtpClient();
+                //    SMTPServer.Host = "smtp.gmail.com";
+                //    SMTPServer.Port = 587;
+                //    SMTPServer.EnableSsl = true;
+                //    SMTPServer.Credentials = new System.Net.NetworkCredential("shahzadaptech143@gmail.com", "accp12345");
+
+                //    SMTPServer.Send(Email);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return RedirectToAction(nameof(ForgetPassword));
+        }
+
+
 
         public string LoginCheck(string SuUsername, string SuPassword)
         {
@@ -222,12 +265,13 @@ namespace ishop.Controllers
 
         }
 
-
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             return RedirectToAction(nameof(Login));
         }
+
+
 
 
     }
