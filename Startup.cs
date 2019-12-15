@@ -36,7 +36,7 @@ namespace ishop
             services.AddDbContext<ishopContext>(options =>
             options.UseSqlServer(
                 Configuration.GetConnectionString("MyCS")));
-                
+
             services.AddSession();
             services.AddDistributedMemoryCache();
 
@@ -66,7 +66,7 @@ namespace ishop
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=SystemUsers}/{action=Login}/{id?}");
+                    template: "{controller=Home}/{action=Login}/{id?}");
             });
         }
     }
