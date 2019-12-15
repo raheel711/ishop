@@ -23,13 +23,9 @@ namespace ishop.Controllers
 
         public IActionResult Index()
         {
-            if (AuthenticateUser())
-            {
-
+            if (AuthenticateUser()) {
                 return View();
-            }
-            else
-            {
+            } else {
                 return RedirectToAction(nameof(Login));
             }
 

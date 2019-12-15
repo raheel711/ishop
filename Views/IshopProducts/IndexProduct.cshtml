@@ -1,0 +1,156 @@
+﻿@model IEnumerable<ishop.Models.IshopProduct>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="CreateProduct">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdFeatureImg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProPic2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdShortDetail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdDetail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdKeywords)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSpecial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsFeature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ranking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdPermalink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdMetaTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdMetaKeyword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GoogleCateory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HitUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Extra)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdFeatureImg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProPic2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdShortDetail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdDetail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdKeywords)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSpecial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsFeature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ranking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdPermalink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdMetaTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdMetaKeyword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoogleCateory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HitUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Extra)
+            </td>
+            <td>
+                <a asp-action="EditProduct" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="DetailsProduct" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="DeleteProduct" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

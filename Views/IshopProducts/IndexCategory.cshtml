@@ -1,0 +1,118 @@
+﻿@model IEnumerable<ishop.Models.IshopCategory>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- DataTables -->
+<link rel="stylesheet" href="~/Dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
+
+<section class="content-header">
+    <h1>
+        Data Tables
+        <small>advanced tables</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Data tables</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Categories</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-hover">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ParentId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CatName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CatFeatureImg)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Ranking)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.GoogleCategory)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AddedDate) | By
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ParentId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CatName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CatFeatureImg)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Ranking)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AddedDate) |
+                                        @Html.DisplayFor(modelItem => item.AddedBy)
+                                    </td>
+                                    <td>
+                                        <a asp-action="EditCategory" asp-route-id="@item.Id">Edit</a> |
+                                        <a asp-action="DetailsCategory" asp-route-id="@item.Id">Details</a> |
+                                        <a asp-action="DeleteCategory" asp-route-id="@item.Id">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <!-- DataTables -->
+    <script src="~/Dashboard/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Dashboard/bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+    <script>
+        $(function () {
+            $('#example1').DataTable();
+        })
+    </script>
+
+}

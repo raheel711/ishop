@@ -1,0 +1,125 @@
+﻿@model ishop.Models.IshopCategory
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>IshopCategory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ParentId" class="control-label"></label>
+                <input asp-for="ParentId" class="form-control" />
+                <span asp-validation-for="ParentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatName" class="control-label"></label>
+                <input asp-for="CatName" class="form-control" />
+                <span asp-validation-for="CatName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatShortDetail" class="control-label"></label>
+                <input asp-for="CatShortDetail" class="form-control" />
+                <span asp-validation-for="CatShortDetail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatDetail" class="control-label"></label>
+                <input asp-for="CatDetail" class="form-control" />
+                <span asp-validation-for="CatDetail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatFeatureImg" class="control-label"></label>
+                <input asp-for="CatFeatureImg" class="form-control" />
+                <span asp-validation-for="CatFeatureImg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatPic2" class="control-label"></label>
+                <input asp-for="CatPic2" class="form-control" />
+                <span asp-validation-for="CatPic2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatKeywords" class="control-label"></label>
+                <input asp-for="CatKeywords" class="form-control" />
+                <span asp-validation-for="CatKeywords" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsFeature" /> @Html.DisplayNameFor(model => model.IsFeature)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ranking" class="control-label"></label>
+                <input asp-for="Ranking" class="form-control" />
+                <span asp-validation-for="Ranking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatPermalink" class="control-label"></label>
+                <input asp-for="CatPermalink" class="form-control" />
+                <span asp-validation-for="CatPermalink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatMetatag" class="control-label"></label>
+                <input asp-for="CatMetatag" class="form-control" />
+                <span asp-validation-for="CatMetatag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShowMenu" class="control-label"></label>
+                <input asp-for="ShowMenu" class="form-control" />
+                <span asp-validation-for="ShowMenu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShowFooter" class="control-label"></label>
+                <input asp-for="ShowFooter" class="form-control" />
+                <span asp-validation-for="ShowFooter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShowHome" class="control-label"></label>
+                <input asp-for="ShowHome" class="form-control" />
+                <span asp-validation-for="ShowHome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GoogleCategory" class="control-label"></label>
+                <input asp-for="GoogleCategory" class="form-control" />
+                <span asp-validation-for="GoogleCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddedDate" class="control-label"></label>
+                <input asp-for="AddedDate" class="form-control" />
+                <span asp-validation-for="AddedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddedBy" class="control-label"></label>
+                <input asp-for="AddedBy" class="form-control" />
+                <span asp-validation-for="AddedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Extra" class="control-label"></label>
+                <input asp-for="Extra" class="form-control" />
+                <span asp-validation-for="Extra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="IndexCategory">Back to List</a>
+</div>
+

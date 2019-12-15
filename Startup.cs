@@ -33,9 +33,12 @@ namespace ishop
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            
             services.AddDbContext<ishopContext>(options =>
             options.UseSqlServer(
                 Configuration.GetConnectionString("MyCS")));
+
+
 
             services.AddSession();
             services.AddDistributedMemoryCache();
