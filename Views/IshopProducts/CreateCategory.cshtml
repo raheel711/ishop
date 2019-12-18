@@ -5,121 +5,360 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<!-- Select2 -->
+<link rel="stylesheet" href="~/Dashboard/bower_components/select2/dist/css/select2.min.css">
+<link rel="stylesheet" href="~/Dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-<h4>IshopCategory</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ParentId" class="control-label"></label>
-                <input asp-for="ParentId" class="form-control" />
-                <span asp-validation-for="ParentId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatName" class="control-label"></label>
-                <input asp-for="CatName" class="form-control" />
-                <span asp-validation-for="CatName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatShortDetail" class="control-label"></label>
-                <input asp-for="CatShortDetail" class="form-control" />
-                <span asp-validation-for="CatShortDetail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatDetail" class="control-label"></label>
-                <input asp-for="CatDetail" class="form-control" />
-                <span asp-validation-for="CatDetail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatFeatureImg" class="control-label"></label>
-                <input asp-for="CatFeatureImg" class="form-control" />
-                <span asp-validation-for="CatFeatureImg" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatPic2" class="control-label"></label>
-                <input asp-for="CatPic2" class="form-control" />
-                <span asp-validation-for="CatPic2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatKeywords" class="control-label"></label>
-                <input asp-for="CatKeywords" class="form-control" />
-                <span asp-validation-for="CatKeywords" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
-                    </label>
+
+
+<section class="content-header">
+    <h1>
+        Categories
+        <small class="text-bold text-success">3</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a asp-action="IndexCategory">Categories</a></li>
+        <li class="active">Create new Category</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+
+        <div class="col-xs-12">
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        Create Category
+                    </h3>
+                </div>
+                <div class="box-body">
+
+                    @if (ViewBag.messageError != null) { 
+                        <h2 class="alert alert-danger text-center">@ViewBag.messageError</h2>
+                    }
+
+                    <div class="category-form">
+                        <form asp-action="CreateCategory" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group field-category-category_name required">
+                                        <label class="control-label" for="category-category_name">Category Name</label>
+                                        <input type="text" asp-for="CatName" class="form-control" maxlength="255" aria-required="true">
+                                        <span asp-validation-for="CatName" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group field-editor1">
+                                        <label class="control-label" for="editor1">Category Short Detail</label>
+                                        <textarea asp-for="CatShortDetail" rows="10" cols="80">
+                                                                Category short Description
+                                        </textarea>
+                                        <span asp-validation-for="CatShortDetail" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group field-editor1">
+                                        <label class="control-label" for="editor1">Category Description</label>
+                                        <textarea asp-for="CatDetail" rows="10" cols="80">
+                                                          Category Description
+                                        </textarea>
+                                        <span asp-validation-for="CatDetail" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group field-category-meta_title required">
+                                        <label class="control-label" for="category-meta_title">Meta Title</label>
+                                        <input type="text" asp-for="CatMetaTitle" class="form-control" maxlength="255" aria-required="true">
+                                        <span asp-validation-for="CatMetaTitle" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group field-category-meta_description required">
+                                        <label class="control-label" for="category-meta_description">Meta Description</label>
+                                        <textarea class="form-control" asp-for="CatMetaDescription" rows="6" aria-required="true"></textarea>
+                                        <span asp-validation-for="CatMetaDescription" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group field-category-meta_keywords">
+                                        <label class="control-label" for="category-meta_keywords">Meta Keywords</label>
+                                        <input type="text" class="form-control" asp-for="CatMetaKeywords">
+                                        <span asp-validation-for="CatMetaKeywords" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="form-group field-category-status required">
+                                        <label class="control-label" for="category-status">Status</label>
+                                        <select class="form-control" asp-for="Status" aria-required="true">
+                                            <option value="">Select Status</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                        <span asp-validation-for="Status" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="form-group field-category-ismenu">
+                                        <label class="control-label" for="category-ismenu">Is Menu</label>
+                                        <select class="form-control" asp-for="ShowMenu">
+                                            <option value="">Show In Menu</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                        <span asp-validation-for="ShowMenu" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="form-group field-category-ishome">
+                                        <label class="control-label" for="category-ishome">Is Home</label>
+                                        <select class="form-control" asp-for="ShowHome">
+                                            <option value="">Show On Home Page</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                        <span asp-validation-for="ShowHome" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group field-category-parent">
+                                        <label class="control-label" asp-for="ParentId"></label>
+                                        @{
+                                            SelectList SL = new SelectList(ViewBag.cateorylist, "Id", "CatName");
+                                        }
+                                        @Html.DropDownList("ParentId", SL, "Select Parent Category", new { @class = "form-control" })
+
+                                        <span asp-validation-for="ParentId" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group field-category-category_url">
+                                        <label class="control-label" for="category-category_url">Category Url</label>
+                                        <input type="text" class="form-control" maxlength="255" placeholder="Optional - Leave blank if you want to want to auto generate">
+
+                                        <div class="help-block"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group field-category-google_category">
+                                        <label class="control-label" for="category-google_category">Google Category</label>
+                                        <input type="text" class="form-control" asp-for="GoogleCategory" placeholder="Optional- Google Category">
+                                        <span asp-validation-for="GoogleCategory" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group field-category-category_image">
+                                        <label class="control-label" for="category-category_image">Category featured Image</label>
+                                        <input type="file" name="FeaturedImage" id="FeaturedImage">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group field-category-category_image">
+                                        <label class="control-label" for="category-category_image">Category Image 2</label>
+                                        <input type="file" asp-for="CatPic2">
+                                        <span asp-validation-for="CatPic2" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="form-group text-center ">
+                                    <button type="submit" class="btn btn-success col-md-12">Create new Category</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="IsFeature" /> @Html.DisplayNameFor(model => model.IsFeature)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Ranking" class="control-label"></label>
-                <input asp-for="Ranking" class="form-control" />
-                <span asp-validation-for="Ranking" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatPermalink" class="control-label"></label>
-                <input asp-for="CatPermalink" class="form-control" />
-                <span asp-validation-for="CatPermalink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatMetatag" class="control-label"></label>
-                <input asp-for="CatMetatag" class="form-control" />
-                <span asp-validation-for="CatMetatag" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShowMenu" class="control-label"></label>
-                <input asp-for="ShowMenu" class="form-control" />
-                <span asp-validation-for="ShowMenu" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShowFooter" class="control-label"></label>
-                <input asp-for="ShowFooter" class="form-control" />
-                <span asp-validation-for="ShowFooter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShowHome" class="control-label"></label>
-                <input asp-for="ShowHome" class="form-control" />
-                <span asp-validation-for="ShowHome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GoogleCategory" class="control-label"></label>
-                <input asp-for="GoogleCategory" class="form-control" />
-                <span asp-validation-for="GoogleCategory" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AddedDate" class="control-label"></label>
-                <input asp-for="AddedDate" class="form-control" />
-                <span asp-validation-for="AddedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AddedBy" class="control-label"></label>
-                <input asp-for="AddedBy" class="form-control" />
-                <span asp-validation-for="AddedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Extra" class="control-label"></label>
-                <input asp-for="Extra" class="form-control" />
-                <span asp-validation-for="Extra" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
+
     </div>
-</div>
+</section>
+
+
+
+@*<h2>Create</h2>
+
+    <h4>IshopCategory</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div class="form-group">
+                    <label asp-for="ParentId" class="control-label"></label>
+                    <input asp-for="ParentId" class="form-control" />
+                    <span asp-validation-for="ParentId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatName" class="control-label"></label>
+                    <input asp-for="CatName" class="form-control" />
+                    <span asp-validation-for="CatName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatShortDetail" class="control-label"></label>
+                    <input asp-for="CatShortDetail" class="form-control" />
+                    <span asp-validation-for="CatShortDetail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatDetail" class="control-label"></label>
+                    <input asp-for="CatDetail" class="form-control" />
+                    <span asp-validation-for="CatDetail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatFeatureImg" class="control-label"></label>
+                    <input asp-for="CatFeatureImg" class="form-control" />
+                    <span asp-validation-for="CatFeatureImg" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatPic2" class="control-label"></label>
+                    <input asp-for="CatPic2" class="form-control" />
+                    <span asp-validation-for="CatPic2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsFeature" /> @Html.DisplayNameFor(model => model.IsFeature)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Ranking" class="control-label"></label>
+                    <input asp-for="Ranking" class="form-control" />
+                    <span asp-validation-for="Ranking" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatMetaTitle" class="control-label"></label>
+                    <input asp-for="CatMetaTitle" class="form-control" />
+                    <span asp-validation-for="CatMetaTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatMetaDescription" class="control-label"></label>
+                    <input asp-for="CatMetaDescription" class="form-control" />
+                    <span asp-validation-for="CatMetaDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatMetaKeywords" class="control-label"></label>
+                    <input asp-for="CatMetaKeywords" class="form-control" />
+                    <span asp-validation-for="CatMetaKeywords" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ShowMenu" class="control-label"></label>
+                    <input asp-for="ShowMenu" class="form-control" />
+                    <span asp-validation-for="ShowMenu" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ShowFooter" class="control-label"></label>
+                    <input asp-for="ShowFooter" class="form-control" />
+                    <span asp-validation-for="ShowFooter" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ShowHome" class="control-label"></label>
+                    <input asp-for="ShowHome" class="form-control" />
+                    <span asp-validation-for="ShowHome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GoogleCategory" class="control-label"></label>
+                    <input asp-for="GoogleCategory" class="form-control" />
+                    <span asp-validation-for="GoogleCategory" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddedDate" class="control-label"></label>
+                    <input asp-for="AddedDate" class="form-control" />
+                    <span asp-validation-for="AddedDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddedBy" class="control-label"></label>
+                    <input asp-for="AddedBy" class="form-control" />
+                    <span asp-validation-for="AddedBy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Extra" class="control-label"></label>
+                    <input asp-for="Extra" class="form-control" />
+                    <span asp-validation-for="Extra" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>*@
 
 <div>
     <a asp-action="IndexCategory">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <!-- Select2 -->
+    <script src="~/Dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <!-- CK Editor -->
+    <script src="~/Dashboard/bower_components/ckeditor/ckeditor.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/Dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script>
+        $(function () {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace('CatShortDetail')
+            CKEDITOR.replace('CatDetail')
+            //bootstrap WYSIHTML5 - text editor
+            $('.textarea').wysihtml5()
+
+
+        })
+    </script>
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2();
+
+        });
+    </script>
+}

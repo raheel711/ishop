@@ -60,6 +60,10 @@ namespace ishop.Controllers
 
         public IActionResult Login()
         {
+            var iShopBusinessSetting = _context.IshopBusinessSetting.FirstOrDefault();
+            ViewBag.iShopBusiness = iShopBusinessSetting;
+            HttpContext.Session.SetString("SessionBusinessName", iShopBusinessSetting.BusinessName);
+
 
             return View();
         }

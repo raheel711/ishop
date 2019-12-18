@@ -16,12 +16,15 @@
         <link rel="stylesheet" href="~/Dashboard/bower_components/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="~/Dashboard/bower_components/Ionicons/css/ionicons.min.css">
+
+        <!-- DataTables -->
+        <link rel="stylesheet" href="~/Dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
         <!-- jvectormap -->
         <link rel="stylesheet" href="~/Dashboard/bower_components/jvectormap/jquery-jvectormap.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="~/Dashboard/dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
+     folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="~/Dashboard/dist/css/skins/_all-skins.min.css">
     </environment>
     <environment exclude="Development">
@@ -38,7 +41,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Admin</b>LTE</span>
+                <span class="logo-lg">@Context.Session.GetString("SessionBusinessName")</span>
             </a>
 
             <!-- Header Navbar: style can be found in header.less -->
@@ -256,7 +259,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="~/Dashboard/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="hidden-xs">@Context.Session.GetString("SessionUsername")</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -264,7 +267,7 @@
                                     <img src="~/Dashboard/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                     <p>
-                                        Alexander Pierce - Web Developer
+                                        @Context.Session.GetString("SessionUsername") - @Context.Session.GetString("SessionUserRole")
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>
@@ -313,8 +316,8 @@
                         <img src="~/Dashboard/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        <p>@Context.Session.GetString("SessionUsername")</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> @Context.Session.GetString("SessionUserRole")</a>
                     </div>
                 </div>
                 <!-- search form -->
@@ -595,11 +598,14 @@
 
     </div>
     <environment include="Development">
-       
+
         <!-- jQuery 3 -->
         <script src="~/dashboard/bower_components/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap 3.3.7 -->
         <script src="~/dashboard/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="~/Dashboard/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="~/Dashboard/bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
         <!-- FastClick -->
         <script src="~/dashboard/bower_components/fastclick/lib/fastclick.js"></script>
         <!-- AdminLTE App -->

@@ -27,11 +27,11 @@ namespace ishop.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=ishop;Trusted_Connection=True;");
-            }
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=ishop;Trusted_Connection=True;");
+//            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -208,23 +208,23 @@ namespace ishop.Models
                     .HasColumnName("cat_feature_img")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.CatKeywords)
-                    .HasColumnName("cat_keywords")
+                entity.Property(e => e.CatMetaDescription)
+                    .HasColumnName("cat_meta_description")
+                    .HasMaxLength(150);
+
+                entity.Property(e => e.CatMetaKeywords)
+                    .HasColumnName("cat_meta_keywords")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.CatMetatag)
-                    .HasColumnName("cat_metatag")
+                entity.Property(e => e.CatMetaTitle)
+                    .IsRequired()
+                    .HasColumnName("cat_meta_title")
                     .HasMaxLength(100);
 
                 entity.Property(e => e.CatName)
                     .IsRequired()
                     .HasColumnName("cat_name")
                     .HasMaxLength(50);
-
-                entity.Property(e => e.CatPermalink)
-                    .IsRequired()
-                    .HasColumnName("cat_permalink")
-                    .HasMaxLength(100);
 
                 entity.Property(e => e.CatPic2)
                     .HasColumnName("cat_pic_2")
@@ -349,6 +349,7 @@ namespace ishop.Models
                 entity.ToTable("ishop_product");
 
                 entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
                 entity.Property(e => e.AddedBy)
                     .IsRequired()
@@ -393,14 +394,18 @@ namespace ishop.Models
                     .HasColumnName("prod_keywords")
                     .HasMaxLength(50);
 
+                entity.Property(e => e.ProdMetaDescription)
+                    .HasColumnName("prod_meta_description")
+                    .HasMaxLength(100);
+
                 entity.Property(e => e.ProdMetaKeyword)
                     .HasColumnName("prod_meta_keyword")
-                    .HasMaxLength(100);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.ProdMetaTitle)
                     .IsRequired()
                     .HasColumnName("prod_meta_title")
-                    .HasMaxLength(50);
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.ProdName)
                     .IsRequired()

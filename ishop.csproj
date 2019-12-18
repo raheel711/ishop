@@ -5995,6 +5995,13 @@
     <Folder Include="wwwroot\Dashboard\bower_components\jquery-ui\themes\ui-lightness\images\" />
     <Folder Include="wwwroot\Dashboard\bower_components\jquery-ui\themes\vader\images\" />
     <Folder Include="wwwroot\Dashboard\bower_components\jvectormap\tests\assets\us\" />
+    <Folder Include="wwwroot\Images\Categories\" />
+    <Folder Include="wwwroot\Images\Products\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\JahizImpex\JahizImpex.csproj" />
   </ItemGroup>
 
 </Project>

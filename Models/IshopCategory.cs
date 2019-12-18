@@ -12,12 +12,12 @@ namespace ishop.Models
         public string CatDetail { get; set; }
         public string CatFeatureImg { get; set; }
         public string CatPic2 { get; set; }
-        public string CatKeywords { get; set; }
         public bool Status { get; set; }
         public bool IsFeature { get; set; }
         public int Ranking { get; set; }
-        public string CatPermalink { get; set; }
-        public string CatMetatag { get; set; }
+        public string CatMetaTitle { get; set; }
+        public string CatMetaDescription { get; set; }
+        public string CatMetaKeywords { get; set; }
         public bool? ShowMenu { get; set; }
         public bool? ShowFooter { get; set; }
         public bool? ShowHome { get; set; }

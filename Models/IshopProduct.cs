@@ -6,6 +6,7 @@ namespace ishop.Models
     public partial class IshopProduct
     {
         public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string ProdName { get; set; }
         public string ItemCode { get; set; }
         public string ProdFeatureImg { get; set; }
@@ -19,6 +20,7 @@ namespace ishop.Models
         public int Ranking { get; set; }
         public string ProdPermalink { get; set; }
         public string ProdMetaTitle { get; set; }
+        public string ProdMetaDescription { get; set; }
         public string ProdMetaKeyword { get; set; }
         public string GoogleCateory { get; set; }
         public int? HitUrl { get; set; }

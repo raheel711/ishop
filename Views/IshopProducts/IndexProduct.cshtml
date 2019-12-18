@@ -5,152 +5,148 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="CreateProduct">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProdName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProdFeatureImg)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProPic2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProdShortDetail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProdDetail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProdKeywords)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsSpecial)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsFeature)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ranking)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProdPermalink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProdMetaTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProdMetaKeyword)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GoogleCateory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HitUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AddedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AddedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Extra)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdFeatureImg)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProPic2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdShortDetail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdDetail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdKeywords)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsSpecial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsFeature)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ranking)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdPermalink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdMetaTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdMetaKeyword)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GoogleCateory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HitUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AddedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AddedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Extra)
-            </td>
-            <td>
-                <a asp-action="EditProduct" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="DetailsProduct" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="DeleteProduct" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<section class="content-header">
+    <h1>
+        Products
+        <small class="text-bold text-success">3</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">All Products</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Products</h3>
+                </div>
+                <!-- /.box-header -->
+
+                <div class="box-body">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Product Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Product">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Parent Category</label>
+                                <input type="email" class="form-control" placeholder="Enter Parent Category">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <input type="email" class="form-control" placeholder="Enter Status">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <button type="submit" class="btn btn-primary">Search</button> |
+                                <button type="submit" class="btn btn-success">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                    <a asp-action="CreateProduct" class="btn btn-danger">Add new Product</a>
+
+                    <hr />
+
+                    <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ProdName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CategoryId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ItemCode)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ProdFeatureImg)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Ranking)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AddedDate) | by
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UpdatedDate)| by
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProdName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CategoryId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ItemCode)
+                                    </td>
+                                    <td>
+                                        <img src="~/Images/Products/@Html.DisplayFor(modelItem => item.ProdFeatureImg)" style="max-width:85px;" />
+
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Ranking)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AddedDate) |
+                                        @Html.DisplayFor(modelItem => item.AddedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UpdatedDate)|
+                                        @Html.DisplayFor(modelItem => item.UpdatedBy)
+
+                                    </td>
+                                    <td>
+                                        <a asp-action="EditProduct" asp-route-id="@item.Id">Edit</a> |
+                                        <a asp-action="DetailsProduct" asp-route-id="@item.Id">Details</a> |
+                                        <a asp-action="DeleteProduct" asp-route-id="@item.Id">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(function () {
+            $('#example1').DataTable();
+        })
+    </script>
+
 }
-    </tbody>
-</table>

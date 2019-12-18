@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ishop.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace ishop.Controllers
 {
@@ -45,6 +47,8 @@ namespace ishop.Controllers
         // GET: IshopProducts/Create
         public IActionResult CreateCategory()
         {
+            ViewBag.cateorylist = ListCategories();
+
             return View();
         }
 
@@ -53,14 +57,37 @@ namespace ishop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateCategory([Bind("Id,ParentId,CatName,CatShortDetail,CatDetail,CatFeatureImg,CatPic2,CatKeywords,Status,IsFeature,Ranking,CatPermalink,CatMetatag,ShowMenu,ShowFooter,ShowHome,GoogleCategory,AddedDate,AddedBy,Extra")] IshopCategory ishopCategory)
+        public async Task<IActionResult> CreateCategory(IshopCategory ishopCategory,IFormFile FeaturedImage)
         {
             if (ModelState.IsValid)
             {
+                var findCatCount = _context.IshopCategory.Where(a => a.CatName == ishopCategory.CatName).Count();
+                if (findCatCount > 0)
+                {
+                    ViewBag.messageError = "Category Aleady Exists!!!!!";
+                    ViewBag.cateorylist = ListCategories();
+                    return View(ishopCategory);
+                }
+                if (FeaturedImage != null && FeaturedImage.Length > 0)
+                {
+                    //var fileName = Path.GetFileName(FeaturedImage.FileName);
+                    var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(FeaturedImage.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images\\Categories", fileName);
+                    using (var fileSteam = new FileStream(filePath, FileMode.Create))
+                    {
+                        await FeaturedImage.CopyToAsync(fileSteam);
+                    }
+                    ishopCategory.CatFeatureImg = fileName;
+                }
+
+                ishopCategory.AddedBy = HttpContext.Session.GetString("SessionUsername");
+
+                ishopCategory.AddedDate = DateTime.Now;
                 _context.Add(ishopCategory);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(IndexCategory));
             }
+            ViewBag.cateorylist = ListCategories();
             return View(ishopCategory);
         }
 
@@ -85,7 +112,7 @@ namespace ishop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditCategory(int id, [Bind("Id,ParentId,CatName,CatShortDetail,CatDetail,CatFeatureImg,CatPic2,CatKeywords,Status,IsFeature,Ranking,CatPermalink,CatMetatag,ShowMenu,ShowFooter,ShowHome,GoogleCategory,AddedDate,AddedBy,Extra")] IshopCategory ishopCategory)
+        public async Task<IActionResult> EditCategory(int id, IshopCategory ishopCategory)
         {
             if (id != ishopCategory.Id)
             {
@@ -188,6 +215,7 @@ namespace ishop.Controllers
         // GET: IshopProducts1/Create
         public IActionResult CreateProduct()
         {
+            ViewBag.cateorylist = ListSubCategories();
             return View();
         }
 
@@ -196,14 +224,36 @@ namespace ishop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateProduct([Bind("Id,ProdName,ItemCode,ProdFeatureImg,ProPic2,ProdShortDetail,ProdDetail,ProdKeywords,Status,IsSpecial,IsFeature,Ranking,ProdPermalink,ProdMetaTitle,ProdMetaKeyword,GoogleCateory,HitUrl,AddedDate,AddedBy,UpdatedDate,UpdatedBy,Extra")] IshopProduct ishopProduct)
+        public async Task<IActionResult> CreateProduct(IshopProduct ishopProduct,IFormFile FeaturedImage)
         {
             if (ModelState.IsValid)
             {
+                var findCatCount = _context.IshopProduct.Where(a => a.ProdName == ishopProduct.ProdName).Count();
+                if (findCatCount > 0)
+                {
+                    ViewBag.messageError = "Product Aleady Exists!!!!!";
+                    ViewBag.cateorylist = ListSubCategories();
+                    return View(ishopProduct);
+                }
+                if (FeaturedImage != null && FeaturedImage.Length > 0)
+                {
+                    //var fileName = Path.GetFileName(FeaturedImage.FileName);
+                    var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(FeaturedImage.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images\\Products", fileName);
+                    using (var fileSteam = new FileStream(filePath, FileMode.Create))
+                    {
+                        await FeaturedImage.CopyToAsync(fileSteam);
+                    }
+                    ishopProduct.ProdFeatureImg = fileName;
+                }
+                
+                ishopProduct.AddedBy = HttpContext.Session.GetString("SessionUsername");
+                ishopProduct.AddedDate = DateTime.Now;
                 _context.Add(ishopProduct);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(IndexProduct));
             }
+            ViewBag.cateorylist = ListSubCategories();
             return View(ishopProduct);
         }
 
@@ -228,7 +278,7 @@ namespace ishop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditProduct(int id, [Bind("Id,ProdName,ItemCode,ProdFeatureImg,ProPic2,ProdShortDetail,ProdDetail,ProdKeywords,Status,IsSpecial,IsFeature,Ranking,ProdPermalink,ProdMetaTitle,ProdMetaKeyword,GoogleCateory,HitUrl,AddedDate,AddedBy,UpdatedDate,UpdatedBy,Extra")] IshopProduct ishopProduct)
+        public async Task<IActionResult> EditProduct(int id,IshopProduct ishopProduct)
         {
             if (id != ishopProduct.Id)
             {
@@ -290,6 +340,21 @@ namespace ishop.Controllers
         private bool IshopProductExists(int id)
         {
             return _context.IshopProduct.Any(e => e.Id == id);
+        }
+
+
+
+        public List<IshopCategory> ListSubCategories() 
+        {
+            var data = _context.IshopCategory.Where(a=>a.ParentId!=0).OrderBy(a=>a.AddedDate).ToList();
+
+            return data;
+        }
+        public List<IshopCategory> ListCategories() 
+        {
+            var data = _context.IshopCategory.Where(a=>a.ParentId==0).OrderBy(a=>a.AddedDate).ToList();
+
+            return data;
         }
 
     }

@@ -5,18 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!-- DataTables -->
-<link rel="stylesheet" href="~/Dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
 
 <section class="content-header">
     <h1>
-        Data Tables
-        <small>advanced tables</small>
+        Categories
+        <small class="text-bold text-success">3</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li class="active">All Categories</li>
     </ol>
 </section>
 
@@ -29,9 +26,41 @@
                     <h3 class="box-title">Categories</h3>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body">
-                    <table id="example1" class="table table-bordered table-hover">
 
+                <div class="box-body">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Category Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Category">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Parent Category</label>
+                                <input type="email" class="form-control" placeholder="Enter Parent Category">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <input type="email" class="form-control" placeholder="Enter Status">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <button type="submit" class="btn btn-primary">Search</button> |
+                                <button type="submit" class="btn btn-success">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                    <a asp-action="CreateCategory" class="btn btn-danger">Add new category</a>
+
+                    <hr />
+
+                    <table id="example1" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>
@@ -69,13 +98,16 @@
                                         @Html.DisplayFor(modelItem => item.CatName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CatFeatureImg)
+                                        <img src="~/Images/Categories/@Html.DisplayFor(modelItem => item.CatFeatureImg)" style="max-width:125px;"/>
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Status)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Ranking)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.GoogleCategory)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.AddedDate) |
@@ -106,9 +138,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <!-- DataTables -->
-    <script src="~/Dashboard/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="~/Dashboard/bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+
     <script>
         $(function () {
             $('#example1').DataTable();
