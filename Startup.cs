@@ -36,7 +36,8 @@ namespace ishop
             
             services.AddDbContext<ishopContext>(options =>
             options.UseSqlServer(
-                Configuration.GetConnectionString("MyCS")));
+                //Configuration.GetConnectionString("OnlineMyCS")));
+            Configuration.GetConnectionString("MyCS")));
 
 
 
@@ -70,7 +71,7 @@ namespace ishop
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Login}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,0 +1,79 @@
+﻿@model ishop.Models.IshopSystemUser
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IshopSystemUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DisplayName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DisplayName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SuUsername)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SuUsername)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SuPassword)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SuPassword)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SuStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SuStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SuEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SuEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SuProfilePic)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SuProfilePic)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SuRole)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SuRole)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AddedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AddedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Extra)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Extra)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditSystemUser" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="IndexSystemUser">Back to List</a>
+</div>

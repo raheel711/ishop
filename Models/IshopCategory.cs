@@ -6,7 +6,7 @@ namespace ishop.Models
     public partial class IshopCategory
     {
         public int Id { get; set; }
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
         public string CatName { get; set; }
         public string CatShortDetail { get; set; }
         public string CatDetail { get; set; }

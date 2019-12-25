@@ -27,11 +27,11 @@ namespace ishop.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=ishop;Trusted_Connection=True;");
-//            }
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=ishop;Trusted_Connection=True;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -349,7 +349,6 @@ namespace ishop.Models
                 entity.ToTable("ishop_product");
 
                 entity.Property(e => e.Id).HasColumnName("id");
-                entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
                 entity.Property(e => e.AddedBy)
                     .IsRequired()
@@ -359,6 +358,8 @@ namespace ishop.Models
                 entity.Property(e => e.AddedDate)
                     .HasColumnName("added_date")
                     .HasColumnType("datetime");
+
+                entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
                 entity.Property(e => e.Extra)
                     .HasColumnName("extra")

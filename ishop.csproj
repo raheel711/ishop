@@ -5997,11 +5997,10 @@
     <Folder Include="wwwroot\Dashboard\bower_components\jvectormap\tests\assets\us\" />
     <Folder Include="wwwroot\Images\Categories\" />
     <Folder Include="wwwroot\Images\Products\" />
+    <Folder Include="wwwroot\Web\" />
   </ItemGroup>
 
 
-  <ItemGroup>
-    <ProjectReference Include="..\JahizImpex\JahizImpex.csproj" />
-  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4dashboard_4bower_3components_4bootstrap-timepicker_4_1bower_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

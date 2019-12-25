@@ -1,0 +1,145 @@
+﻿@model ishop.Models.IshopProduct
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IshopProduct</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ItemCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdFeatureImg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdFeatureImg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProPic2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProPic2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdShortDetail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdShortDetail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdDetail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdDetail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdKeywords)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdKeywords)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSpecial)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsSpecial)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFeature)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsFeature)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ranking)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ranking)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdPermalink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdPermalink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdMetaTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdMetaTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdMetaKeyword)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdMetaKeyword)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GoogleCateory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GoogleCateory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HitUrl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HitUrl)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AddedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AddedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Extra)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Extra)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditProduct" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="IndexProduct">Back to List</a>
+</div>
